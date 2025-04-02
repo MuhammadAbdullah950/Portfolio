@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import ProjectCard from "./ProjectCard";
+import React, { useState } from 'react';
+import ProjectCard from './ProjectCard';
 import { ChevronDown } from 'lucide-react';
-import useWork from "../hooks/useWork";
+import useWork from '../hooks/useWork';
 
 const Work = () => {
   const {
@@ -16,9 +16,8 @@ const Work = () => {
     filteredProjects,
     setVisibleProjects,
     isDropdownOpen,
-    setIsDropdownOpen
+    setIsDropdownOpen,
   } = useWork();
-
 
   if (isLoading) {
     return (
@@ -54,7 +53,7 @@ const Work = () => {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
             <div className="text-left">
               <h2 className="text-4xl font-bold text-white mb-4">
-                My Work
+                My Notable Work
                 <div className="h-1 w-20 bg-sky-500 mt-2 rounded-full"></div>
               </h2>
               <p className="text-lg text-gray-400">
@@ -73,9 +72,13 @@ const Work = () => {
                          transition-all duration-300 md:hidden"
               >
                 <span className="truncate">
-                  {projectCategory.find(cat => cat.value === selectedCategory)?.label}
+                  {
+                    projectCategory.find(
+                      (cat) => cat.value === selectedCategory,
+                    )?.label
+                  }
                 </span>
-                <ChevronDown 
+                <ChevronDown
                   className={`ml-2 h-5 w-5 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`}
                 />
               </button>
@@ -114,8 +117,8 @@ const Work = () => {
                          cursor-pointer appearance-none"
               >
                 {projectCategory.map((category) => (
-                  <option 
-                    key={category.value} 
+                  <option
+                    key={category.value}
                     value={category.value}
                     className="bg-gray-800 text-white"
                   >
@@ -123,7 +126,7 @@ const Work = () => {
                   </option>
                 ))}
               </select>
-              
+
               {/* Desktop Dropdown Arrow */}
               <div className="hidden md:block absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
                 <ChevronDown className="h-5 w-5 text-white" />
@@ -139,9 +142,11 @@ const Work = () => {
         ) : (
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
-              {filteredProjects.slice(0, visibleProjects).map((project, index) => (
-                <ProjectCard key={index} {...project} />
-              ))}
+              {filteredProjects
+                .slice(0, visibleProjects)
+                .map((project, index) => (
+                  <ProjectCard key={index} {...project} />
+                ))}
             </div>
 
             {visibleProjects < filteredProjects.length && (
