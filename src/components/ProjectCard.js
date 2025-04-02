@@ -14,29 +14,16 @@ const ProjectCard = ({
   techIconAlt = [],
   techName = [],
 }) => {
-  const isGoogleDriveLink = videoSrc && videoSrc.includes('drive.google.com');
-
   return (
     <section id="project" className="group p-4">
       <div className="relative overflow-hidden rounded-xl bg-gray-900 border border-gray-700 hover:border-sky-400/50 transition-all duration-300 shadow-lg hover:shadow-sky-400/10">
         {/* Image or Video Display */}
         <div className="relative h-64 overflow-hidden">
           {videoSrc ? (
-            isGoogleDriveLink ? (
-              <iframe
-                src={videoSrc}
-                className="w-full h-full"
-                allow="autoplay; fullscreen"
-                allowFullScreen
-                frameBorder="0"
-                title={title}
-              ></iframe>
-            ) : (
-              <video controls className="w-full h-full object-cover">
-                <source src={videoSrc} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            )
+            <video controls className="w-full h-full object-cover">
+              <source src={videoSrc} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           ) : imgSrc ? (
             <img
               src={imgSrc}
